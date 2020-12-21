@@ -15,7 +15,7 @@ def data_append():
     current_json = json.load(f)
     f.close()
     if request.method == "POST":
-        input_json = request.get_json(force=True)
+        input_json = request.get_json()
         current_json['users'].append(input_json)
         rewrite_database(current_json)
         return str(current_json)
@@ -39,4 +39,4 @@ def index():
         return reader.read()
 
 if __name__ == "__main__":
-    app.run(host = '192.168.43.84',debug=True)
+    app.run(host = '172.17.7.225',debug=True)
