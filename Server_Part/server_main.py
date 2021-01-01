@@ -38,5 +38,6 @@ def index():
     with open(name, "r") as reader:
         return reader.read()
 
+
 if __name__ == "__main__":
-    app.run(host = '172.17.7.225',debug=True)
+    app.run(host = '0.0.0.0', port= 5000)
