@@ -11,9 +11,8 @@ app = Flask("__main__")
 
 @app.route('/data_append', methods=['POST', 'GET'])
 def data_append():
-    f = open(name)
-    current_json = json.load(f)
-    f.close()
+    with open(name) as f:
+        current_json = json.load(f)
     if request.method == "POST":
         input_json = request.get_json()
         current_json['users'].append(input_json)
@@ -23,9 +22,8 @@ def data_append():
         return str(current_json)       
 @app.route('/data_delete', methods = ['DELETE'])
 def data_delete():
-    f = open(name)
-    current_json = json.load(f)
-    f.close()
+    with open(name) as f:
+        current_json = json.load(f)
     user_ip = str(request.remote_addr)
     for i in range(len(current_json['users'])):
         if current_json['users'][i]['ip'] == user_ip:
